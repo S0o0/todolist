@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useState, type JSX } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { tasksCollection } from './data'
-import type { Task } from './Task'
+import type { Task, TaskStatus } from './Task'
 import { v4 as uuidv4 } from 'uuid';
 
 function App() {
@@ -29,6 +29,20 @@ function App() {
     }
     addNewTask(content!);
   }
+
+  const getStatusEmoji = (status: TaskStatus): JSX.Element => {
+    switch (status) {
+      case "todo":
+        return <span>⏳</span>;
+      case "doing":
+        return <span>⌚️</span>;
+      case "done":
+        return <span>✅</span>;
+      default:
+        return <span></span>;
+    }
+  };
+
   return (
     <>
       <h1>Todo List</h1>
@@ -37,11 +51,11 @@ function App() {
       <ul>
         {tasks.map((task) => (
           <li key={task.id}>
-            {task.content}
+            {getStatusEmoji(task.status)} {task.content}
           </li>
         ))}
       </ul>
-      
+
     </>
   )
 }
