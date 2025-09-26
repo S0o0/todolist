@@ -3,9 +3,11 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { tasksCollection } from './data'
+import type { Task } from './Task'
 
 function App() {
-  const tasks = tasksCollection; // pas sûr s'il faut utiliser useStat à la place
+  //const tasks = tasksCollection;
+  const [tasks, setTasks] = useState<Task[]>(tasksCollection);
   return (
     <>
       <h1>Todo List</h1>
