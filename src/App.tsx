@@ -43,6 +43,17 @@ function App() {
     }
   };
 
+  const doneTask = (id: string) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        return { ...task, status: 'done' as TaskStatus, completedAt: new Date() };
+      } else {
+        return task;
+      }
+    })
+    setTasks(updatedTasks);
+  };
+
   return (
     <>
       <h1>Todo List</h1>
@@ -52,6 +63,21 @@ function App() {
         {tasks.map((task) => (
           <li key={task.id}>
             {getStatusEmoji(task.status)} {task.content}
+            <br />
+            <span className="date">
+              Initiée le {task.createdAt.toLocaleDateString('fr-FR')}
+            </span>
+            <br />
+            {task.completedAt && (
+              <span className="date">
+                Terminée le {task.completedAt.toLocaleDateString('fr-FR')}
+              </span>
+            )}
+            <p>
+              {task.status !== 'done' && (
+                <button onClick={() => doneTask(task.id)}>Valider</button>
+              )}
+            </p>
           </li>
         ))}
       </ul>
