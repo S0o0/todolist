@@ -21,10 +21,10 @@ function App() {
   }
 
   const handleClick = () => {
-    const content = prompt("Saisissez le contenu de la nouvelle tâche");
+    const content = prompt("Veuillez saisir le contenu...");
 
     if (!content || content.trim() === "") {
-      alert("Le contenu de la tâche ne peut pas être vide.");
+      alert("Veuillez saisir un contenu");
       return;
     }
     addNewTask(content!);
@@ -33,6 +33,7 @@ function App() {
     <>
       <h1>Todo List</h1>
       <p>Nombre de tâches : {tasks.length}</p>
+      <button onClick={handleClick}>Nouvelle tâche</button>
       <ul>
         {tasks.map((task) => (
           <li key={task.id}>
@@ -40,7 +41,7 @@ function App() {
           </li>
         ))}
       </ul>
-      <button onClick={handleClick}>Ajouter une tâche</button>
+      
     </>
   )
 }
