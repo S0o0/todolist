@@ -76,3 +76,12 @@ ul li {
 .link:hover{
   color : lightblue;
 }
+
+.edit{
+  border: 1px solid white;
+}
+
+.edit:hover{
+  border : 1px solid rgb(117, 118, 119);
+  background-color: #212222aa;
+}
