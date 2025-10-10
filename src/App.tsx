@@ -62,6 +62,13 @@ function App() {
   const updatedTasks = tasks.filter(task => task.id !== id);
   setTasks(updatedTasks);
 };
+
+const editTask = (id: string, newContent: string) => {
+  const updatedTasks = tasks.map(task =>
+    task.id === id ? { ...task, content: newContent } : task
+  );
+  setTasks(updatedTasks);
+};
   return (
     <Router>
 
@@ -75,7 +82,12 @@ function App() {
             <h1>Todo List</h1>
             <p>Nombre de tâches : {tasks.length}</p>
             <TaskForm onAdd={addNewTask} />
-            <TasksMaster tasks={tasks} onDone={doneTask} onDelete={deleteTask} />
+            <TasksMaster
+  tasks={tasks}
+  onDone={doneTask}
+  onDelete={deleteTask}
+  onEdit={editTask}
+/>
           </>
         }
       />

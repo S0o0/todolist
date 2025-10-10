@@ -6,9 +6,10 @@ interface TasksMasterProps {
   tasks: Task[];
   onDone: (id: string) => void;
   onDelete: (id: string) => void;
+  onEdit: (id: string, newContent: string) => void;
 }
 
-const TasksMaster: React.FC<TasksMasterProps> = ({ tasks, onDone,  onDelete }) => {
+const TasksMaster: React.FC<TasksMasterProps> = ({ tasks, onDone,  onDelete, onEdit}) => {
   return (
     <ul>
       {tasks.map((task) => (
@@ -17,6 +18,7 @@ const TasksMaster: React.FC<TasksMasterProps> = ({ tasks, onDone,  onDelete }) =
           task={task} 
           onDone={onDone} 
           onDelete={onDelete}
+          onEdit={onEdit}
         />
       ))}
     </ul>
