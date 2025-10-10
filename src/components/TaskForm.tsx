@@ -24,7 +24,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAdd }) => {
         type="text"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        placeholder="Nouvelle tâche..."
+        placeholder="Nouvelle tâche"
       />
       <button type="submit">Ajouter</button>
     </form>

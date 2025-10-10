@@ -5,6 +5,8 @@ import './App.css'
 import { tasksCollection } from './data'
 import type { Task, TaskStatus } from './Task'
 import { v4 as uuidv4 } from 'uuid';
+import TaskForm from './components/TaskForm';
+import TasksMaster from './components/TasksMaster';
 
 function App() {
   //const tasks = tasksCollection;
@@ -58,29 +60,8 @@ function App() {
     <>
       <h1>Todo List</h1>
       <p>Nombre de tâches : {tasks.length}</p>
-      <button onClick={handleClick}>Nouvelle tâche</button>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            {getStatusEmoji(task.status)} {task.content}
-            <br />
-            <span className="date">
-              Initiée le {task.createdAt.toLocaleDateString('fr-FR')}
-            </span>
-            <br />
-            {task.completedAt && (
-              <span className="date">
-                Terminée le {task.completedAt.toLocaleDateString('fr-FR')}
-              </span>
-            )}
-            <p>
-              {task.status !== 'done' && (
-                <button onClick={() => doneTask(task.id)}>Valider</button>
-              )}
-            </p>
-          </li>
-        ))}
-      </ul>
+      <TaskForm onAdd={addNewTask} />
+      <TasksMaster tasks={tasks} onDone={doneTask} />
 
     </>
   )
