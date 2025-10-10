@@ -4,9 +4,10 @@ import type { Task, TaskStatus } from '../Task';
 interface TaskPreviewProps {
   task: Task;
   onDone: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
-const TaskPreview: React.FC<TaskPreviewProps> = ({ task, onDone }) => {
+const TaskPreview: React.FC<TaskPreviewProps> = ({ task, onDone, onDelete }) => {
   const getStatusEmoji = (status: TaskStatus): JSX.Element => {
     switch (status) {
       case "todo": return <span>⏳</span>;
@@ -31,8 +32,15 @@ const TaskPreview: React.FC<TaskPreviewProps> = ({ task, onDone }) => {
       )}
       <p>
         {task.status !== 'done' && (
-          <button onClick={() => onDone(task.id)}>Valider</button>
+          <button className ="validate" onClick={() => onDone(task.id)}>✅</button>
         )}
+      </p>
+      <p>
+        {task.status === 'done' && (
+        <button className ="delete" onClick={() => onDelete(task.id)}>
+            🗑️
+        </button>
+)}
       </p>
     </li>
   );

@@ -48,3 +48,21 @@ ul li {
 .date{
   opacity : 0.4;
 }
+
+.delete{
+  border: 1px solid orange;
+}
+
+.delete:hover{
+  border : 1px solid darkorange;
+  background-color: #212222aa;
+}
+
+.validate{
+  border: 1px solid lightgreen;
+}
+
+.validate:hover{
+  border : 1px solid green;
+  background-color: #212222aa;
+}

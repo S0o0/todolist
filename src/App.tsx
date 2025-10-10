@@ -55,13 +55,18 @@ function App() {
     })
     setTasks(updatedTasks);
   };
-
+  const deleteTask = (id: string) => {
+  // On filtre toutes les tâches sauf celle avec l'id correspondant
+  const updatedTasks = tasks.filter(task => task.id !== id);
+  setTasks(updatedTasks);
+};
   return (
     <>
       <h1>Todo List</h1>
       <p>Nombre de tâches : {tasks.length}</p>
+      <button onClick={handleClick}>Nouvelle tâche</button>
       <TaskForm onAdd={addNewTask} />
-      <TasksMaster tasks={tasks} onDone={doneTask} />
+      <TasksMaster tasks={tasks} onDone={doneTask} onDelete={deleteTask} />
 
     </>
   )
