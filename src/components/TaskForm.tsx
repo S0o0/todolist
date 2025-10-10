@@ -1,30 +1,32 @@
-// src/components/TaskForm.tsx
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
 interface TaskFormProps {
   onAdd: (content: string) => void;
 }
 
-const TaskForm: React.FC<TaskFormProps> = ({ onAdd }) => {
-  const [content, setContent] = useState('');
+interface FormValues {
+  content: string;
+}
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (content.trim() === '') {
+const TaskForm: React.FC<TaskFormProps> = ({ onAdd }) => {
+  const { register, handleSubmit, reset } = useForm<FormValues>();
+
+  const onSubmit = (data: FormValues) => {
+    if (!data.content.trim()) {
       alert('Veuillez saisir un contenu');
       return;
     }
-    onAdd(content);
-    setContent('');
+    onAdd(data.content);
+    reset();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <input
         type="text"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
         placeholder="Nouvelle tâche"
+        {...register('content')}
       />
       <button type="submit">Ajouter</button>
     </form>
