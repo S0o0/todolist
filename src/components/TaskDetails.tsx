@@ -15,10 +15,10 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ tasks }) => {
     <div>
       <h2>Détails de la tâche</h2>
       <p><strong>Contenu :</strong> {task.content}</p>
-      <p><strong>Status :</strong> {task.status}</p>
+      <p><strong>Statut :</strong> {task.status}</p>
       <p><strong>Initiée le :</strong> {task.createdAt.toLocaleDateString()}</p>
       {task.completedAt && <p><strong>Terminée le :</strong> {task.completedAt.toLocaleDateString()}</p>}
-      <Link to="/">← Retour à la liste</Link>
+      <Link className ="link"to="/">⬅️ Retour</Link>
     </div>
   );
 };

@@ -16,7 +16,7 @@ const TasksMaster: React.FC<TasksMasterProps> = ({ tasks, onDone,  onDelete }) =
           key={task.id} 
           task={task} 
           onDone={onDone} 
-          onDelete={onDelete} // ← passe la prop à TaskPreview
+          onDelete={onDelete}
         />
       ))}
     </ul>
