@@ -7,6 +7,8 @@ import type { Task, TaskStatus } from './Task'
 import { v4 as uuidv4 } from 'uuid';
 import TaskForm from './components/TaskForm';
 import TasksMaster from './components/TasksMaster';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import TaskDetails from './components/TaskDetails';
 
 function App() {
   //const tasks = tasksCollection;
@@ -61,14 +63,27 @@ function App() {
   setTasks(updatedTasks);
 };
   return (
-    <>
-      <h1>Todo List</h1>
-      <p>Nombre de tâches : {tasks.length}</p>
-      <button onClick={handleClick}>Nouvelle tâche</button>
-      <TaskForm onAdd={addNewTask} />
-      <TasksMaster tasks={tasks} onDone={doneTask} onDelete={deleteTask} />
+    <Router>
 
-    </>
-  )
+    
+   <Routes>
+      {/* Route principale : liste de toutes les tâches */}
+      <Route 
+        path="/" 
+        element={
+          <>
+            <h1>Todo List</h1>
+            <p>Nombre de tâches : {tasks.length}</p>
+            <TaskForm onAdd={addNewTask} />
+            <TasksMaster tasks={tasks} onDone={doneTask} onDelete={deleteTask} />
+          </>
+        }
+      />
+
+      {/* Route détails d'une tâche */}
+      <Route path="/tasks/:taskId" element={<TaskDetails tasks={tasks} />} />
+    </Routes>
+    </Router>
+  );
 }
 export default App
