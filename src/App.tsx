@@ -1,6 +1,4 @@
 import { useState, type JSX } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { tasksCollection } from './data'
 import type { Task, TaskStatus } from './Task'
@@ -58,43 +56,43 @@ function App() {
     setTasks(updatedTasks);
   };
   const deleteTask = (id: string) => {
-  // On filtre toutes les tâches sauf celle avec l'id correspondant
-  const updatedTasks = tasks.filter(task => task.id !== id);
-  setTasks(updatedTasks);
-};
+    // On filtre toutes les tâches sauf celle avec l'id correspondant
+    const updatedTasks = tasks.filter(task => task.id !== id);
+    setTasks(updatedTasks);
+  };
 
-const editTask = (id: string, newContent: string) => {
-  const updatedTasks = tasks.map(task =>
-    task.id === id ? { ...task, content: newContent } : task
-  );
-  setTasks(updatedTasks);
-};
+  const editTask = (id: string, newContent: string) => {
+    const updatedTasks = tasks.map(task =>
+      task.id === id ? { ...task, content: newContent } : task
+    );
+    setTasks(updatedTasks);
+  };
   return (
     <Router>
 
-    
-   <Routes>
-      {/* Route principale : liste de toutes les tâches */}
-      <Route 
-        path="/" 
-        element={
-          <>
-            <h1>Todo List</h1>
-            <p>Nombre de tâches : {tasks.length}</p>
-            <TaskForm onAdd={addNewTask} />
-            <TasksMaster
-  tasks={tasks}
-  onDone={doneTask}
-  onDelete={deleteTask}
-  onEdit={editTask}
-/>
-          </>
-        }
-      />
 
-      {/* Route détails d'une tâche */}
-      <Route path="/tasks/:taskId" element={<TaskDetails tasks={tasks} />} />
-    </Routes>
+      <Routes>
+        {/* Route principale : liste de toutes les tâches */}
+        <Route
+          path="/"
+          element={
+            <>
+              <h1>Todo List</h1>
+              <p>Nombre de tâches : {tasks.length}</p>
+              <TaskForm onAdd={addNewTask} />
+              <TasksMaster
+                tasks={tasks}
+                onDone={doneTask}
+                onDelete={deleteTask}
+                onEdit={editTask}
+              />
+            </>
+          }
+        />
+
+        {/* Route détails d'une tâche */}
+        <Route path="/tasks/:taskId" element={<TaskDetails tasks={tasks} />} />
+      </Routes>
     </Router>
   );
 }

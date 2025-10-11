@@ -1,6 +1,5 @@
 import { type JSX } from 'react';
 import type { Task, TaskStatus } from '../Task';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 
@@ -12,7 +11,6 @@ interface TaskPreviewProps {
 }
 
 const TaskPreview: React.FC<TaskPreviewProps> = ({ task, onDone, onDelete, onEdit }) => {
-  const navigate = useNavigate();
   const getStatusEmoji = (status: TaskStatus): JSX.Element => {
     switch (status) {
       case "todo": return <span>⏳</span>;
@@ -20,9 +18,6 @@ const TaskPreview: React.FC<TaskPreviewProps> = ({ task, onDone, onDelete, onEdi
       case "done": return <span>✅</span>;
       default: return <span></span>;
     }
-  };
-  const goToDetails = () => {
-    navigate(`/tasks/${task.id}`);
   };
 
   return (
