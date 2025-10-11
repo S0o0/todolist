@@ -9,7 +9,7 @@ interface TaskPreviewProps {
   onDelete: (id: string) => void;
   onEdit: (id: string, newContent: string) => void;
 }
-
+// Composant pour afficher un aperçu d'une tâche
 const TaskPreview: React.FC<TaskPreviewProps> = ({ task, onDone, onDelete, onEdit }) => {
   const getStatusEmoji = (status: TaskStatus): JSX.Element => {
     switch (status) {

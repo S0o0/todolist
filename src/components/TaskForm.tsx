@@ -8,11 +8,12 @@ interface TaskFormProps {
 interface FormValues {
   content: string;
 }
-
+// Formulaire pour ajouter une nouvelle tâche
 const TaskForm: React.FC<TaskFormProps> = ({ onAdd }) => {
   const { register, handleSubmit, reset } = useForm<FormValues>();
 
   const onSubmit = (data: FormValues) => {
+    // Cas où le contenu est vide
     if (!data.content.trim()) {
       alert('Veuillez saisir un contenu');
       return;

@@ -8,7 +8,7 @@ interface TaskDetailsProps {
 const TaskDetails: React.FC<TaskDetailsProps> = ({ tasks }) => {
   const { taskId } = useParams<{ taskId: string }>();
   const task = tasks.find(t => t.id === taskId);
-
+  // Cas où la tâche n'existe pas
   if (!task) return <p>Tâche introuvable</p>;
 
   return (

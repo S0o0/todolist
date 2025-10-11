@@ -9,14 +9,15 @@ interface TasksMasterProps {
   onEdit: (id: string, newContent: string) => void;
 }
 
-const TasksMaster: React.FC<TasksMasterProps> = ({ tasks, onDone,  onDelete, onEdit}) => {
+// Composant pour afficher la liste des tâches
+const TasksMaster: React.FC<TasksMasterProps> = ({ tasks, onDone, onDelete, onEdit }) => {
   return (
     <ul>
       {tasks.map((task) => (
-         <TaskPreview 
-          key={task.id} 
-          task={task} 
-          onDone={onDone} 
+        <TaskPreview
+          key={task.id}
+          task={task}
+          onDone={onDone}
           onDelete={onDelete}
           onEdit={onEdit}
         />

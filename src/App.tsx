@@ -12,6 +12,7 @@ function App() {
   //const tasks = tasksCollection;
   const [tasks, setTasks] = useState<Task[]>(tasksCollection);
 
+  // Ajouter une nouvelle tâche
   const addNewTask = (content: string) => {
     const newTask: Task = {
       id: uuidv4(),
@@ -22,6 +23,7 @@ function App() {
     setTasks([newTask, ...tasks]);
   }
 
+  // Gérer le clic sur le bouton Ajouter (se trouve désormais dans TaskForm)
   const handleClick = () => {
     const content = prompt("Veuillez saisir le contenu...");
 
@@ -32,6 +34,7 @@ function App() {
     addNewTask(content!);
   }
 
+  // Afficher les emojis en fonction du statut (se trouve désormais dans TaskPreview)
   const getStatusEmoji = (status: TaskStatus): JSX.Element => {
     switch (status) {
       case "todo":
@@ -44,7 +47,7 @@ function App() {
         return <span></span>;
     }
   };
-
+  // Marquer une tâche comme faite
   const doneTask = (id: string) => {
     const updatedTasks = tasks.map((task) => {
       if (task.id === id) {
@@ -55,12 +58,13 @@ function App() {
     })
     setTasks(updatedTasks);
   };
+  // Supprimer une tâche
   const deleteTask = (id: string) => {
     // On filtre toutes les tâches sauf celle avec l'id correspondant
     const updatedTasks = tasks.filter(task => task.id !== id);
     setTasks(updatedTasks);
   };
-
+  // Éditer une tâche
   const editTask = (id: string, newContent: string) => {
     const updatedTasks = tasks.map(task =>
       task.id === id ? { ...task, content: newContent } : task
@@ -69,10 +73,8 @@ function App() {
   };
   return (
     <Router>
-
-
       <Routes>
-        {/* Route principale : liste de toutes les tâches */}
+        {/* Route principale */}
         <Route
           path="/"
           element={
